@@ -12,7 +12,7 @@ var hotKey = new HotKey();
 ### 2. Add HotKey
 <pre>
 hotKey.add("CTRL+A", function(e) {
-  // do something when CTRL + A keydown
+  // do something when CTRL+A keydown
 });
 </pre>
 
@@ -41,9 +41,9 @@ hotKey.start();
 
 #### Example
 <pre>
-A with CTRL => CTRL+A (A+CTRL is not available)
-A with CTRL, SHIFT => CTRL+SHIFT+A (SHIFT+CTRL+A is not available)
-A with META (Command Key on Mac) => META+A
+CTRL+A (A+CTRL is not available)
+CTRL+SHIFT+A (SHIFT+CTRL+A is not available)
+META+A (META is a Command key on Mac)
 </pre>
 
 #### Use `META` for Command Key on Mac
@@ -61,5 +61,7 @@ Back Space => DELETE
 
 #### Example
 <pre>
-Left Arrow with CTRL => CTRL+LEFT-ARROW
+CTRL+LEFT-ARROW
+CTRL+RIGHT-ARROW
+CTRL+UP-ARROW
 </pre>

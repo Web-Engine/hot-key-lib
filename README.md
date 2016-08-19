@@ -1,5 +1,5 @@
 # key-macro-lib
-javascript key library macro on web
+javascript hot key library on web
 
 ## How to use
 

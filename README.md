@@ -58,3 +58,8 @@ Tab => TAB
 Space Bar => SPACE
 Back Space => DELETE
 </pre>
+
+#### Example
+<pre>
+Left Arrow with CTRL => CTRL+LEFT-ARROW
+</pre>

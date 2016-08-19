@@ -3,15 +3,15 @@ javascript hot key library on web
 
 ## How to use
 
-### 1. Create a KeyMacro Object
+### 1. Create a HotKey Object
 <pre>
-var keyMacro = new KeyMacro();
+var hotKey = new HotKey();
 </pre>
 
 
-### 2. Add Macro
+### 2. Add HotKey
 <pre>
-keyMacro.add("CTRL+A", function(e) {
+hotKey.add("CTRL+A", function(e) {
   // do something when CTRL + A keydown
 });
 </pre>
@@ -19,13 +19,13 @@ keyMacro.add("CTRL+A", function(e) {
 
 ### 3. Setup (if you want)
 <pre>
-keyMacro.setup({
+hotKey.setup({
   "preventDefault": true
 });
 </pre>
 
 
-### 4. Start KeyMacro
+### 4. Start HotKey
 <pre>
-keyMacro.start();
+hotKey.start();
 </pre>

@@ -1,4 +1,4 @@
-function KeyMacro() {
+function HotKey() {
     const keyNames = {
         8: "DELETE",
         9: "TAB",
@@ -9,7 +9,7 @@ function KeyMacro() {
         40: "DOWN-ARROW"
     };
 
-    var macroKeys = {};
+    var hotKeys = {};
     var setups = {
         "preventDefault": false
     };
@@ -17,18 +17,18 @@ function KeyMacro() {
     this.add = function(key, func) {
         key = key.toUpperCase();
 
-        if (!macroKeys[key]) {
-            macroKeys[key] = [];
+        if (!hotKeys[key]) {
+            hotKeys[key] = [];
         }
 
-        macroKeys[key].push(func);
+        hotKeys[key].push(func);
     }
 
     this.remove = function (key, func) {
-        if (!macroKeys[key]) return false;
+        if (!hotKeys[key]) return false;
 
-        macroKeys.filter(function (macro) {
-            return macro !== func;
+        hotKeys.filter(function (hotKey) {
+            return hotKey !== func;
         });
     }
 
@@ -80,9 +80,9 @@ function KeyMacro() {
         return key.join("+");
     }
 
-    function runMacroKeys(e) {
+    function runHotKeys(e) {
         var key = KeyEventToString(e);
-        if (!macroKeys[key]) return;
+        if (!hotKeys[key]) return;
 
         if (setups["preventDefault"]) {
             e.preventDefault();
@@ -93,16 +93,16 @@ function KeyMacro() {
         e.keyCode = keyCode;
         e.keyString = key;
 
-        macroKeys[key].forEach(function (macro) {
+        hotKeys[key].forEach(function (macro) {
             macro.call(null, e);
         });
     }
 
     this.start = function () {
-        document.addEventListener("keydown", runMacroKeys);
+        document.addEventListener("keydown", runHotKeys);
     }
 
     this.stop = function () {
-        document.removeEventListener("keydown", runMacroKeys);
+        document.removeEventListener("keydown", runHotKeys);
     }
 }

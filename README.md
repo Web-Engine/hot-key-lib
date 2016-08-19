@@ -1,4 +1,4 @@
-# key-macro-lib
+# hot-key-lib
 javascript hot key library on web
 
 ## How to use

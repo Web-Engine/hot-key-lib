@@ -35,6 +35,8 @@ hotKey.start();
 
 ## Key Name Rule
 
+### Default Rule
+
 [CTRL+][SHIFT+][ALT+][META+]KEY
 
 #### Example
@@ -44,7 +46,14 @@ A with CTRL, SHIFT => CTRL+SHIFT+A (SHIFT+CTRL+A is not available)
 A with META (Command Key on Mac) => META+A
 </pre>
 
-## Use `META` for Command Key on Mac
+#### Use `META` for Command Key on Mac
 <pre>
 META+C means Command+C on Mac
 </pre>
+
+### Reserved KEY
+<pre>
+Arrows => LEFT-ARROW, UP-ARROW, RIGHT-ARROW, DOWN-ARROW
+Tab => TAB
+Space Bar => SPACE
+Back Space => DELETE

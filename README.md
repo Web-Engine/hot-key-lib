@@ -17,7 +17,7 @@ keyMacro.add("CTRL+A", function(e) {
 </pre>
 
 
-### 3. Setup
+### 3. Setup (if you want)
 <pre>
 keyMacro.setup({
   "preventDefault": true

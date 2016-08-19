@@ -31,3 +31,20 @@ hotKey.setup({
 <pre>
 hotKey.start();
 </pre>
+
+
+## Key Name Rule
+
+[CTRL+][SHIFT+][ALT+][META+]KEY
+
+#### Example
+<pre>
+A with CTRL => CTRL+A (A+CTRL is not available)
+A with CTRL, SHIFT => CTRL+SHIFT+A (SHIFT+CTRL+A is not available)
+A with META (Command Key on Mac) => META+A
+</pre>
+
+## Use `META` for Command Key on Mac
+<pre>
+META+C means Command+C on Mac
+</pre>

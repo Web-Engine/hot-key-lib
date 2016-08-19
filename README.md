@@ -24,6 +24,8 @@ hotKey.setup({
 });
 </pre>
 
+* preventDefault: if true, prevent default behavior from browser (default: false)
+
 
 ### 4. Start HotKey
 <pre>

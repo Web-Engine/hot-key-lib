@@ -22,7 +22,7 @@ hotKey.add("CTRL+X", function (e) {
     display("Ctrl + X => Cut");
 });
 
-hotKey.add("CTRL+C", function (e) {
+hotKey.add(["CTRL+C", "META+C"], function (e) {
     display("Ctrl + C => Copy");
 });
 

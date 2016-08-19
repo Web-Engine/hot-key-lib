@@ -15,6 +15,15 @@ function HotKey() {
     };
 
     this.add = function(key, func) {
+        if (key instanceof Array) {
+            var t = this;
+            key.forEach(function (k) {
+                t.add(k, func);
+            });
+
+            return;
+        }
+
         key = key.toUpperCase();
 
         if (!hotKeys[key]) {

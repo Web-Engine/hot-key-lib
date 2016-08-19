@@ -10,6 +10,10 @@ function KeyMacro() {
     };
 
     var macroKeys = {};
+    var setups = {
+        "preventDefault": false
+    };
+
     this.add = function(key, func) {
         key = key.toUpperCase();
 
@@ -18,7 +22,7 @@ function KeyMacro() {
         }
 
         macroKeys[key].push(func);
-    };
+    }
 
     this.remove = function (key, func) {
         if (!macroKeys[key]) return false;
@@ -28,7 +32,18 @@ function KeyMacro() {
         });
     }
 
+    this.setup = function(options) {
+        for (var k in options) {
+            setups[k] = options;
+        }
+    }
+    
+    function getKeyCode(e) {
+        return e.which || e.keyCode;
+    }
+
     function KeyEventToString(e) {
+        var keyCode = getKeyCode(e);
         var key = [];
 
         if (e.ctrlKey) {
@@ -43,19 +58,23 @@ function KeyMacro() {
             key.push("ALT");
         }
 
+        if (e.metaKey) {
+            key.push("META");
+        }
+
         if (
-            e.keyCode == 16 // shift key
-            || e.keyCode == 17 // ctrl key
-            || e.keyCode == 18 // alt key
+            keyCode == 16 // shift key
+            || keyCode == 17 // ctrl key
+            || keyCode == 18 // alt key
         ) {
             return key.join("+");
         }
 
-        if (keyNames[e.keyCode]) {
-            key.push(keyNames[e.keyCode]);
+        if (keyNames[keyCode]) {
+            key.push(keyNames[keyCode]);
         }
         else {
-            key.push(String.fromCharCode(e.keyCode));
+            key.push(String.fromCharCode(keyCode));
         }
 
         return key.join("+");
@@ -64,6 +83,15 @@ function KeyMacro() {
     function runMacroKeys(e) {
         var key = KeyEventToString(e);
         if (!macroKeys[key]) return;
+
+        if (setups["preventDefault"]) {
+            e.preventDefault();
+        }
+
+        var keyCode = getKeyCode(e);
+        e.which = keyCode;
+        e.keyCode = keyCode;
+        e.keyString = key;
 
         macroKeys[key].forEach(function (macro) {
             macro.call(null, e);

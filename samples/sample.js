@@ -42,4 +42,8 @@ keyMacro.add("TAB", function (e) {
     display("Tab");
 });
 
+keyMacro.setup({
+    "preventDefault": true
+});
+
 keyMacro.start();

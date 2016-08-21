@@ -24,7 +24,7 @@ function HotKey() {
             return;
         }
 
-        key = key.toUpperCase();
+        key = key.toString().toUpperCase();
 
         if (!hotKeys[key]) {
             hotKeys[key] = [];

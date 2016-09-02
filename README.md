@@ -38,6 +38,11 @@ hotKey.setup({
 hotKey.start();
 </pre>
 
+### 5. Stop HotKey
+if you want to stop the HotKey, then
+<pre>
+hotKey.stop();
+</pre>
 
 ## Key Name Rule
 

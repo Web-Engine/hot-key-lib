@@ -13,7 +13,6 @@ javascript hot key(shortcut key) library on web
 var hotKey = new HotKey();
 </pre>
 
-
 ### 2. Add HotKey
 <pre>
 hotKey.add("CTRL+A", function(e) {
@@ -31,12 +30,14 @@ hotKey.add(["CTRL+A", "META+A"], function(e) {
 ### 3. Setup (if you want)
 <pre>
 hotKey.setup({
-  "preventDefault": true
+  preventDefault: true
+  metaToCtrl: true
 });
 </pre>
-
 * preventDefault: if true, prevent default behavior from browser (default: false)
-
+* metaToCtrl: if true, change the key `META+C` to `CTRL+C`
+  (So you don't have to add both CTRL+C and META+C hot key for support windows and mac)
+  (just add `CTRL+C` hot key and setup `metaToCtrl` to true)
 
 ### 4. Start HotKey
 <pre>
@@ -52,8 +53,7 @@ hotKey.stop();
 ## Key Name Rule
 
 ### Default Rule
-
-[CTRL+][SHIFT+][ALT+][META+]KEY
+[CTRL+][META+][SHIFT+][ALT+]KEY
 
 #### Example
 <pre>
@@ -62,24 +62,24 @@ CTRL+SHIFT+A (SHIFT+CTRL+A is not available)
 META+A (META is a Command key on Mac)
 </pre>
 
-#### Use `META` for Command Key on Mac
+#### Use `META` for Command Key on Mac (or use `metaToCtrl`)
 <pre>
 META+C means Command+C on Mac
 </pre>
 
 ### Reserved KEY
 <pre>
-Arrows => LEFT-ARROW, UP-ARROW, RIGHT-ARROW, DOWN-ARROW
+Arrows => LEFT, UP, RIGHT, DOWN
 Tab => TAB
 Space Bar => SPACE
-Back Space => DELETE
+Back Space => BACK
 </pre>
 
 #### Example
 <pre>
-CTRL+LEFT-ARROW
-CTRL+RIGHT-ARROW
-CTRL+UP-ARROW
+CTRL+LEFT
+CTRL+RIGHT
+CTRL+UP
 </pre>
 
 ## Event Parameter

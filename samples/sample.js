@@ -1,49 +1,59 @@
 var hotKey = new HotKey();
-var displayKey = document.getElementById("display-key");
+var keyView = document.getElementById("display-key");
+var actView = document.getElementById("display-action");
 
-function display(text) {
-    displayKey.innerText = text;
+function displayKey(text) {
+    keyView.innerText = text;
 }
 
-hotKey.add("CTRL+A", function (e) {
-    display("Ctrl + A => Select All");
+function displayAction(text) {
+    actView.innerText = text;
+}
+
+hotKey.add("ALL", function (e) {
+    e.preventDefault();
+    displayKey(e.keyString + " - " + e.keyCode);
 });
 
-
-hotKey.add("CTRL+Z", function (e) {
-    display("Ctrl + Z => Undo");
+hotKey.add("CTRL+A", function () {
+    displayAction("Select All");
 });
 
-hotKey.add("CTRL+SHIFT+Z", function (e) {
-    display("Ctrl + SHIFT + Z => Redo");
+hotKey.add("CTRL+Z", function () {
+    displayAction("Undo");
 });
 
-hotKey.add("CTRL+X", function (e) {
-    display("Ctrl + X => Cut");
+hotKey.add("CTRL+SHIFT+Z", function () {
+    displayAction("Redo");
 });
 
-hotKey.add(["CTRL+C", "META+C"], function (e) {
-    display("Ctrl + C => Copy");
+hotKey.add("CTRL+X", function () {
+    displayAction("Cut");
 });
 
-hotKey.add("CTRL+V", function (e) {
-    display("Ctrl + V => Pate");
+hotKey.add(["CTRL+C", "META+C"], function () {
+    displayAction("Copy");
 });
 
-hotKey.add("CTRL+S", function (e) {
-    display("Save");
+hotKey.add("CTRL+V", function () {
+    displayAction("Paste");
 });
 
-hotKey.add("CTRL+SHIFT+S", function (e) {
-    display("Save As");
+hotKey.add("CTRL+S", function () {
+    displayAction("Save");
 });
 
-hotKey.add("TAB", function (e) {
-    display("Tab");
+hotKey.add("CTRL+SHIFT+S", function () {
+    displayAction("Save As");
+});
+
+hotKey.add("TAB", function () {
+    displayAction("Tab");
 });
 
 hotKey.setup({
-    "preventDefault": true
+    preventDefault: true,
+    metaToCtrl: true
 });
 
 hotKey.start();

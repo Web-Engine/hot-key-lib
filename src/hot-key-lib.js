@@ -1,17 +1,40 @@
 function HotKey() {
     const keyNames = {
-        8: "DELETE",
+        8: "BACK-SPACE",
         9: "TAB",
+        13: "ENTER",
+        20: "CAPS-LOCK",
+        27: "ESC",
         32: "SPACE",
-        37: "LEFT-ARROW",
-        38: "UP-ARROW",
-        39: "RIGHT-ARROW",
-        40: "DOWN-ARROW"
+        33: "PAGE-UP",
+        34: "PAGE-DOWN",
+        35: "END",
+        36: "HOME",
+        37: "LEFT",
+        38: "UP",
+        39: "RIGHT",
+        40: "DOWN",
+        45: "INSERT",
+        46: "DELETE",
+        186: "SEMI-COLON",
+        187: "EQUAL",
+        188: "COMMA",
+        189: "DASH",
+        190: "PERIOD",
+        191: "SLASH",
+        192: "BACK-QUOTE",
+        219: "OPEN-BRACKET",
+        220: "BACK-SLASH",
+        221: "CLOSE-BRACKET",
+        222: "QUOTE",
     };
 
-    var hotKeys = {};
-    var setups = {
-        "preventDefault": false
+    var hotKeys = {
+        ALL: []
+    };
+    var settings = {
+        preventDefault: false,
+        metaToCtrl: false
     };
 
     this.add = function(key, func) {
@@ -36,14 +59,14 @@ function HotKey() {
     this.remove = function (key, func) {
         if (!hotKeys[key]) return false;
 
-        hotKeys.filter(function (hotKey) {
+        hotKeys = hotKeys.filter(function (hotKey) {
             return hotKey !== func;
         });
     }
 
     this.setup = function(options) {
         for (var k in options) {
-            setups[k] = options;
+            settings[k] = options;
         }
     }
 
@@ -59,6 +82,17 @@ function HotKey() {
             key.push("CTRL");
         }
 
+        if (e.metaKey) {
+            if (settings.metaToCtrl) {
+                if (!e.ctrlKey) {
+                    key.push("CTRL");
+                }
+            }
+            else {
+                key.push("META");
+            }
+        }
+
         if (e.shiftKey) {
             key.push("SHIFT");
         }
@@ -67,20 +101,21 @@ function HotKey() {
             key.push("ALT");
         }
 
-        if (e.metaKey) {
-            key.push("META");
-        }
-
         if (
             keyCode == 16 // shift key
             || keyCode == 17 // ctrl key
             || keyCode == 18 // alt key
+            || keyCode == 91 // left meta key
+            || keyCode == 93 // right meta key
         ) {
             return key.join("+");
         }
 
         if (keyNames[keyCode]) {
             key.push(keyNames[keyCode]);
+        }
+        else if (112 <= keyCode && keyCode <= 123) {
+            key.push("F" + (keyCode - 111));
         }
         else {
             key.push(String.fromCharCode(keyCode));
@@ -91,19 +126,24 @@ function HotKey() {
 
     function runHotKeys(e) {
         var key = KeyEventToString(e);
-        if (!hotKeys[key]) return;
-
-        if (setups["preventDefault"]) {
-            e.preventDefault();
-        }
-
         var keyCode = getKeyCode(e);
+
         e.which = keyCode;
         e.keyCode = keyCode;
         e.keyString = key;
 
+        hotKeys.ALL.forEach(function (macro) {
+            macro.call(document, e);
+        });
+
+        if (!hotKeys[key]) return;
+
+        if (settings.preventDefault) {
+            e.preventDefault();
+        }
+
         hotKeys[key].forEach(function (macro) {
-            macro.call(null, e);
+            macro.call(document, e);
         });
     }
 

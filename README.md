@@ -35,7 +35,7 @@ hotKey.setup({
 });
 </pre>
 
-If you want to know more about Settings, [Click Here](#Settings). 
+If you want to know more about Settings, [Click Here](#settings). 
 
 * preventDefault: 
 * metaToCtrl: if true, change the key `META+C` to `CTRL+C`

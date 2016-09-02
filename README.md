@@ -3,6 +3,11 @@ javascript hot key(shortcut key) library on web
 
 ## How to use
 
+### 0. Load hot-key-lib.js
+<pre>
+&lt;script src="hot-key-lib.js"&gt;&lt;/script&gt;
+</pre>
+
 ### 1. Create a HotKey Object
 <pre>
 var hotKey = new HotKey();

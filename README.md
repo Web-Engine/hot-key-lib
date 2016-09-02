@@ -133,6 +133,7 @@ And also it isn't call `e.preventDefault()` even the setting `preventDefault` is
 
 ## Event Parameter
 Event Parameter is just `KeyboardEvent` from Browser. But, we add some datas.
+
 | Name               | Description                             |
 |--------------------|-----------------------------------------|
 | e.which, e.keyCode | the code of key which was down          |

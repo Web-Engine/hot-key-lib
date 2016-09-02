@@ -16,6 +16,12 @@ hotKey.add("CTRL+A", function(e) {
 });
 </pre>
 
+#### Also, you can add HotKey through key array
+<pre>
+hotKey.add(["CTRL+A", "META+A"], function(e) {
+  // do something when CTRL+A or META+A keydown
+});
+</pre>
 
 ### 3. Setup (if you want)
 <pre>

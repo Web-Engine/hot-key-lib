@@ -88,3 +88,5 @@ Event Parameter is just `KeyDownEvent` from Browser. But, we add some datas.
 e.which, e.keyCode: the code of key was downed.
 e.keyString: the key from hot key lib. (like CTRL+A)
 </pre>
+
+## License: MIT License

@@ -81,3 +81,10 @@ CTRL+LEFT-ARROW
 CTRL+RIGHT-ARROW
 CTRL+UP-ARROW
 </pre>
+
+## Event Parameter
+Event Parameter is just KeyDownEvent from Browser. But, we add some datas.  
+<pre>
+e.which, e.keyCode: the code of key was downed.
+e.keyString: the key from hot key lib. (like CTRL+A)
+</pre>

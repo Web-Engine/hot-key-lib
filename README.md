@@ -1,5 +1,5 @@
 # hot-key-lib
-javascript hot key(shortcut key) library on web
+pure javascript hot key(keyboard shortcut) library on web
 
 ## How to use
 

@@ -32,11 +32,11 @@ function HotKey() {
 
         // 65~90: A~Z
 
-        // 96~105: NUMPAD-0~9
-
         91: "META",
         92: "META",
         93: "SELECT",
+
+        // 96~105: NUMPAD-0~9
 
         106: "NUMPAD-*",
         107: "NUMPAD-+",
@@ -64,9 +64,11 @@ function HotKey() {
     var hotKeys = {
         ALL: []
     };
+
     var settings = {
         preventDefault: false,
-        metaToCtrl: false
+        metaToCtrl: false,
+        noNumpadNum: false
     };
 
     this.add = function(key, func) {
@@ -119,7 +121,7 @@ function HotKey() {
     };
 
     function getKeyCode(e) {
-        return e.which || e.keyCode;
+        return e.keyCode || e.which;
     }
 
     function getFullKeyString(e) {
@@ -171,7 +173,12 @@ function HotKey() {
             return keyNames[keyCode];
         }
         else if (96 <= keyCode && keyCode <= 105) {
-            return "NUMPAD" + (keyCode - 96);
+            if (settings.noNumpadNum) {
+                return (keyCode - 96).toString();
+            }
+            else {
+                return "NUMPAD-" + (keyCode - 96);
+            }
         }
         else if (112 <= keyCode && keyCode <= 123) {
             return "F" + (keyCode - 111);
@@ -182,24 +189,26 @@ function HotKey() {
     }
 
     function onKeyDown(e) {
-        var key = getFullKeyString(e);
+        var keyFullString = getFullKeyString(e);
+        var keyString = getKeyString(e);
         var keyCode = getKeyCode(e);
 
         e.which = keyCode;
         e.keyCode = keyCode;
-        e.keyString = key;
+        e.keyFullString = keyFullString;
+        e.keyString = keyString;
 
         hotKeys.ALL.forEach(function (macro) {
             macro.call(document, e);
         });
 
-        if (!hotKeys[key]) return;
+        if (!hotKeys[keyFullString]) return;
 
         if (settings.preventDefault) {
             e.preventDefault();
         }
 
-        hotKeys[key].forEach(function (macro) {
+        hotKeys[keyFullString].forEach(function (macro) {
             macro.call(document, e);
         });
     }

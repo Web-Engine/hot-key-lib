@@ -12,7 +12,7 @@ function displayAction(text) {
 
 hotKey.add("ALL", function (e) {
     e.preventDefault();
-    displayKey(e.keyString + " - " + e.keyCode);
+    displayKey(e.keyFullString + " - " + e.keyCode);
 });
 
 hotKey.add("CTRL+A", function () {

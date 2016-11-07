@@ -4,54 +4,40 @@ pure javascript hot key(keyboard shortcut) library on web
 ## How to use
 
 ### 0. Load hot-key-lib.js
-<pre>
-&lt;script src="hot-key-lib.js"&gt;&lt;/script&gt;
-</pre>
+    <script src="hot-key-lib.js"></script>
 
 ### 1. Create a HotKey Object
-<pre>
-var hotKey = new HotKey();
-</pre>
+    var hotKey = new HotKey();
 
 ### 2. Add HotKey
-<pre>
-hotKey.add("CTRL+A", function(e) {
-  // do something when CTRL+A keydown
-});
-</pre>
+    hotKey.add("CTRL+A", function(e) {
+      // do something when CTRL+A keydown
+    });
 
 #### Also, you can add HotKey through key array
-<pre>
-hotKey.add(["CTRL+A", "META+A"], function(e) {
-  // do something when CTRL+A or META+A keydown
-});
-</pre>
+    hotKey.add(["CTRL+A", "META+A"], function(e) {
+      // do something when CTRL+A or META+A keydown
+    });
 
 ### 3. Setup (if you want)
-<pre>
-hotKey.setup({
-  preventDefault: true
-  metaToCtrl: true
-});
-</pre>
+    hotKey.setup({
+      preventDefault: true
+      metaToCtrl: true
+    });
 
 If you want to know more about Settings, [Click Here](#settings). 
 
-* preventDefault: 
+* preventDefault: if true, prevent browser's default behavior.
 * metaToCtrl: if true, change the key `META+C` to `CTRL+C`
   (So you don't have to add both CTRL+C and META+C hot key for support windows and mac)
   (just add `CTRL+C` hot key and setup `metaToCtrl` to true)
 
 ### 4. Start HotKey
-<pre>
-hotKey.start();
-</pre>
+    hotKey.start();
 
 ### 5. Stop HotKey
 if you want to stop the HotKey, then
-<pre>
-hotKey.stop();
-</pre>
+    hotKey.stop();
 
 ## Key Name Rule
 
@@ -115,34 +101,33 @@ hotKey.stop();
 | 222       | Back Quote                      | \`    | \`            |
 
 #### Example
-<pre>
-hotKey.add("CTRL+SPACE", ...);
-hotKey.add("SLASH", ...);
-hotKey.add("SHIFT+SEMI-COLON", ...);
-</pre>
+    hotKey.add("CTRL+SPACE", ...);
+    hotKey.add("SLASH", ...);
+    hotKey.add("SHIFT+SEMI-COLON", ...);
 
 ### Special Keys
 
 #### ALL
-
     hotKey.add("ALL", ...);
 
 This hot key will be call when any key is down.
-And also it isn't call `e.preventDefault()` even the setting `preventDefault` is true.
+And it doesn't prevent browser's default behavior, even the setting `preventDefault` is true.
 
 ## Settings
 | Name           | Default Value | Description                                    |
 |----------------|:-------------:|------------------------------------------------|
-| preventDefault | false         | if true, prevent default behavior from browser |
-| metaToCtrl     | false         | if true, change the key `META` to `CTRL`.<br>(So you don't have to add both CTRL+C and META+C hot key for support Windows and Mac)<br>(just add `CTRL+C` hot key and setup `metaToCtrl` to true) |
+| preventDefault | false         | if true, prevent browser's default behavior |
+| metaToCtrl     | false         | if true, change the key `META` to `CTRL`.<br>(So you don't have to add both `CTRL+C` and `META+C` hot key for support Windows and Mac)<br>(just add `CTRL+C` hot key and setup `metaToCtrl` to true) |
+| noNumpadNum    | false         | if true, change the key `NUMPAD-0~9` to `0~9`<br>(So you don't have to add both `CTRL+0` and `CTRL+NUMPAD-0`, only CTRL+0) |
 
 ## Event Parameter
-Event Parameter is just `KeyboardEvent` from Browser. But, we add some datas.
+Event Parameter is just `KeyboardEvent` from Browser. But, we add some data.
 
 | Name               | Description                             |
 |--------------------|-----------------------------------------|
 | e.which, e.keyCode | the code of key which was down          |
-| e.keyString        | the key from hot key lib. (like CTRL+A) |
+| e.keyString        | the name of key was down (without `CTRL+`, `META+` and etc like just `A`) |
+| e.keyFullString    | the full name of key was down (with `CTRL+`, `META+` and etc like `CTRL+A`) |
 
 ## License
 MIT License

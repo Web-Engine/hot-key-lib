@@ -2,31 +2,63 @@ function HotKey() {
     const keyNames = {
         8: "BACK-SPACE",
         9: "TAB",
+
+        12: "NUMPAD-CENTER", // NUMPAD-5 without numlock
         13: "ENTER",
+
+        16: "SHIFT",
+        17: "CTRL",
+        18: "ALT",
+        19: "PAUSE-BREAK",
         20: "CAPS-LOCK",
+
         27: "ESC",
+
         32: "SPACE",
         33: "PAGE-UP",
         34: "PAGE-DOWN",
         35: "END",
         36: "HOME",
-        37: "LEFT",
-        38: "UP",
-        39: "RIGHT",
-        40: "DOWN",
+        37: "LEFT-ARROW",
+        38: "UP-ARROW",
+        39: "RIGHT-ARROW",
+        40: "DOWN-ARROW",
+
+        44: "PRINT-SCREEN",
         45: "INSERT",
         46: "DELETE",
-        186: "SEMI-COLON",
-        187: "EQUAL",
-        188: "COMMA",
-        189: "DASH",
-        190: "PERIOD",
-        191: "SLASH",
-        192: "BACK-QUOTE",
-        219: "OPEN-BRACKET",
-        220: "BACK-SLASH",
-        221: "CLOSE-BRACKET",
-        222: "QUOTE",
+
+        // 48~57: 0~9
+
+        // 65~90: A~Z
+
+        // 96~105: NUMPAD-0~9
+
+        91: "META",
+        92: "META",
+        93: "SELECT",
+
+        106: "NUMPAD-*",
+        107: "NUMPAD-+",
+        109: "NUMPAD--",
+        110: "NUMPAD-.",
+        111: "NUMPAD-/",
+
+        // 112~123: F1~F12
+
+        144: "NUM-LOCK",
+        145: "SCROLL-LOCK",
+        186: ";",
+        187: "=",
+        188: ",",
+        189: "-",
+        190: ".",
+        191: "/",
+        192: "`",
+        219: "[",
+        220: "\\",
+        221: "]",
+        222: "'"
     };
 
     var hotKeys = {
@@ -54,27 +86,43 @@ function HotKey() {
         }
 
         hotKeys[key].push(func);
-    }
+    };
 
     this.remove = function (key, func) {
-        if (!hotKeys[key]) return false;
+        if (key instanceof Array) {
+            var t = this;
+            key.forEach(function (k) {
+                t.remove(k, func);
+            });
 
-        hotKeys = hotKeys.filter(function (hotKey) {
-            return hotKey !== func;
-        });
-    }
+            return;
+        }
+
+        key = key.toString().toUpperCase();
+        if (!hotKeys[key]) return;
+
+        if (func) {
+            var idx = hotKeys[key].indexOf(func);
+            if (idx < 0) return;
+
+            hotKeys[key].splice(idx, 1);
+        }
+        else {
+            delete hotKeys[key];
+        }
+    };
 
     this.setup = function(options) {
         for (var k in options) {
             settings[k] = options;
         }
-    }
+    };
 
     function getKeyCode(e) {
         return e.which || e.keyCode;
     }
 
-    function KeyEventToString(e) {
+    function getFullKeyString(e) {
         var keyCode = getKeyCode(e);
         var key = [];
 
@@ -102,30 +150,39 @@ function HotKey() {
         }
 
         if (
-            keyCode == 16 // shift key
-            || keyCode == 17 // ctrl key
-            || keyCode == 18 // alt key
-            || keyCode == 91 // left meta key
-            || keyCode == 93 // right meta key
+            keyCode == 16 || // SHIFT
+            keyCode == 17 || // CTRL
+            keyCode == 18 || // ALT
+            keyCode == 91 || // META (left)
+            keyCode == 92    // META (right)
         ) {
             return key.join("+");
         }
 
-        if (keyNames[keyCode]) {
-            key.push(keyNames[keyCode]);
-        }
-        else if (112 <= keyCode && keyCode <= 123) {
-            key.push("F" + (keyCode - 111));
-        }
-        else {
-            key.push(String.fromCharCode(keyCode));
-        }
+        key.push(getKeyString(e));
 
         return key.join("+");
     }
 
-    function runHotKeys(e) {
-        var key = KeyEventToString(e);
+    function getKeyString(e) {
+        var keyCode = getKeyCode(e);
+
+        if (keyNames[keyCode]) {
+            return keyNames[keyCode];
+        }
+        else if (96 <= keyCode && keyCode <= 105) {
+            return "NUMPAD" + (keyCode - 96);
+        }
+        else if (112 <= keyCode && keyCode <= 123) {
+            return "F" + (keyCode - 111);
+        }
+        else {
+            return String.fromCharCode(keyCode);
+        }
+    }
+
+    function onKeyDown(e) {
+        var key = getFullKeyString(e);
         var keyCode = getKeyCode(e);
 
         e.which = keyCode;
@@ -147,11 +204,49 @@ function HotKey() {
         });
     }
 
-    this.start = function () {
-        document.addEventListener("keydown", runHotKeys);
+    function _start(target) {
+        if (target.addEventListener) {
+            target.addEventListener("keydown", onKeyDown);
+        }
+        else if (target.attachEvent) {
+            target.attachEvent("onkeydown", onKeyDown);
+        }
     }
 
-    this.stop = function () {
-        document.removeEventListener("keydown", runHotKeys);
+    function _stop(target) {
+        if (target.removeEventListener) {
+            target.removeEventListener("keydown", onKeyDown);
+        }
+        else if (target.detachEvent) {
+            target.detachEvent("onkeydown", onKeyDown);
+        }
     }
+
+    this.start = function (target) {
+        if (target == null) {
+            target = document;
+        }
+
+        this.target = target;
+
+        if (target instanceof Array) {
+            for (var i=0; i<target.length; i++) {
+                _start(target[i]);
+            }
+        }
+        else {
+            _start(target);
+        }
+    };
+
+    this.stop = function () {
+        if (this.target instanceof Array) {
+            for (var i=0; i<this.target.length; i++) {
+                _stop(this.target[i]);
+            }
+        }
+        else {
+            _stop(this.target);
+        }
+    };
 }

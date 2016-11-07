@@ -67,47 +67,52 @@ hotKey.stop();
     META+C means Command+C on Mac
 
 ### Reserved Keys
-| Key Code | Name          | Shape | Key           |
-|:--------:|---------------|:-----:|---------------|
-| 8        | Back Space    |       | BACK-SPACE    |
-| 9        | Tab           |       | TAB           |
-| 13       | Enter         |       | ENTER         |
-| 20       | Caps Lock     |       | CAPS-LOCK     |
-| 27       | ESC           |       | ESC           |
-| 32       | Space         |       | SPACE         |
-| 33       | Page Up       |       | PAGE-UP       |
-| 34       | Page Down     |       | PAGE-DOWN     |
-| 35       | End           |       | END           |
-| 36       | Home          |       | HOME          |
-| 37       | Left Arrow    | ←     | LEFT          |
-| 38       | Up Arrow      | ↑     | UP            |
-| 39       | Right Arrow   | →     | RIGHT         |
-| 40       | Down Arrow    | ↓     | DOWN          |
-| 45       | Insert        |       | INSERT        |
-| 46       | Delete        |       | DELETE        |
-| 112      | F1            |       | F1            |
-| 113      | F2            |       | F2            |
-| 114      | F3            |       | F3            |
-| 115      | F4            |       | F4            |
-| 116      | F5            |       | F5            |
-| 117      | F6            |       | F6            |
-| 118      | F7            |       | F7            |
-| 119      | F8            |       | F8            |
-| 120      | F9            |       | F9            |
-| 121      | F10           |       | F10           |
-| 122      | F11           |       | F11           |
-| 123      | F12           |       | F12           |
-| 186      | Semi Colon    | ;     | SEMI-COLON    |
-| 187      | Dash          | -     | DASH          |
-| 188      | Equal         | =     | EQUAL         |
-| 189      | Comma         | ,     | COMMA         |
-| 190      | Period        | .     | PERIOD        |
-| 191      | Slash         | /     | SLASH         |
-| 192      | Back Slash    | \     | BACK-SLASH    |
-| 219      | Open Bracket  | [     | OPEN-BRACKET  |
-| 220      | Close Bracket | ]     | CLOSE-BRACKET |
-| 221      | Quote         | '     | QUOTE         |
-| 222      | Back Quote    | `     | BACK-QUOTE    |
+| Key Code  | Description                     | Shape | Name          |
+|:---------:|---------------------------------|:-----:|---------------|
+| 8         | Back Space                      |       | BACK-SPACE    |
+| 9         | Tab                             |       | TAB           |
+| 12        | Number Pad 5 without Num Lock   |       | NUMPAD-CENTER |
+| 13        | Enter                           |       | ENTER         |
+| 16        | Shift                           |       | SHIFT         |
+| 17        | Ctrl                            |       | CTRL          |
+| 18        | Alt                             |       | ALT           |
+| 19        | Pause / Break                   |       | PAUSE-BREAK   |
+| 20        | Caps Lock                       |       | CAPS-LOCK     |
+| 27        | ESC                             |       | ESC           |
+| 32        | Space                           |       | SPACE         |
+| 33        | Page Up                         |       | PAGE-UP       |
+| 34        | Page Down                       |       | PAGE-DOWN     |
+| 35        | End                             |       | END           |
+| 36        | Home                            |       | HOME          |
+| 37        | Left Arrow                      | ←    | LEFT-ARROW    |
+| 38        | Up Arrow                        | ↑    | UP-ARROW      |
+| 39        | Right Arrow                     | →    | RIGHT-ARROW   |
+| 40        | Down Arrow                      | ↓    | DOWN-ARROW    |
+| 44        | Print Screen / Sys Rq           |       | PRINT-SCREEN  |
+| 45        | Insert                          |       | INSERT        |
+| 46        | Delete                          |       | DELETE        |
+| 48 ~ 90   | 0 ~ 9                           |       | 0 ~ 9         |
+| 65 ~ 90   | A ~ Z                           |       | A ~ Z         |
+| 96 ~ 105  | Number Pad 0 ~ 9                |       | NUMPAD-0 ~ 9  |
+| 106       | Number Pad *                    | *     | NUMPAD-*      |
+| 107       | Number Pad +                    | +     | NUMPAD-*      |
+| 109       | Number Pad -                    | -     | NUMPAD--      |
+| 110       | Number Pad .                    | .     | NUMPAD-.      |
+| 111       | Number Pad /                    | /     | NUMPAD-/      |
+| 112 ~ 123 | F1 ~ F12                        |       | F1 ~ F12      |
+| 144       | Num Lock                        |       | NUM-LOCK      |
+| 145       | Scroll Lock                     |       | SCROLL-LOCK   |
+| 186       | Semi Colon                      | ;     | ;             |
+| 187       | Dash                            | -     | -             |
+| 188       | Equal                           | =     | =             |
+| 189       | Comma                           | ,     | ,             |
+| 190       | Period                          | .     | .             |
+| 191       | Slash                           | /     | /             |
+| 192       | Back Slash                      | \     | \             |
+| 219       | Open Bracket                    | [     | [             |
+| 220       | Close Bracket                   | ]     | ]             |
+| 221       | Single Quote                    | '     | '             |
+| 222       | Back Quote                      | \`    | \`            |
 
 #### Example
 <pre>

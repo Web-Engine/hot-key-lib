@@ -27,16 +27,12 @@ pure javascript hot key(keyboard shortcut) library on web
 
 If you want to know more about Settings, [Click Here](#settings). 
 
-* preventDefault: if true, prevent browser's default behavior.
-* metaToCtrl: if true, change the key `META+C` to `CTRL+C`
-  (So you don't have to add both CTRL+C and META+C hot key for support windows and mac)
-  (just add `CTRL+C` hot key and setup `metaToCtrl` to true)
-
 ### 4. Start HotKey
     hotKey.start();
 
 ### 5. Stop HotKey
 if you want to stop the HotKey, then
+
     hotKey.stop();
 
 ## Key Name Rule

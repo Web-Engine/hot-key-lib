@@ -103,7 +103,7 @@ if you want to stop the HotKey, then
 #### Example
     hotKey.add("CTRL+SPACE", ...);
     hotKey.add("SLASH", ...);
-    hotKey.add("SHIFT+SEMI-COLON", ...);
+    hotKey.add("SHIFT+;", ...);
 
 ### Special Keys
 

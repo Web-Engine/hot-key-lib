@@ -131,4 +131,4 @@ Event Parameter is just `KeyboardEvent` from Browser. But, we add some data.
 
 ## License
 MIT License
-Author: WebEngine (Jo Tae Sang)
+Author: WebEngine (TaeSang Cho)
